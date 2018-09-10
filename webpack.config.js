@@ -32,6 +32,10 @@ module.exports = ({ mode, presets } = { mode: 'production', presets: [] }) => {
               loader: 'babel-loader',
             },
           },
+          {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader'],
+          },
         ],
       },
     },

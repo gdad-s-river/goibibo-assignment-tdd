@@ -10,7 +10,8 @@
     "prod": "npm run webpack -- --env.mode production",
     "prod:analyse": "npm run prod -- --env.presets analyze",
     "prod:compress": "npm run prod -- --env.presets compress",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
   },
   "keywords": [
     "interview",
@@ -32,6 +33,7 @@
     "mini-css-extract-plugin": "^0.4.2",
     "react-hot-loader": "^4.3.6",
     "react-test-renderer": "^16.5.0",
+    "react-testing-library": "^5.0.1",
     "webpack": "^4.17.2",
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.1.0",

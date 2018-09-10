@@ -1,5 +1,12 @@
 import React from 'react';
+import { ContactInput } from './components';
 
-const App = <div>Init Yeah science Setup</div>;
+const App = (
+  <ContactInput
+    onSubmit={(name, contactNumber) => {
+      console.log(name, contactNumber);
+    }}
+  />
+);
 
 export default App;
