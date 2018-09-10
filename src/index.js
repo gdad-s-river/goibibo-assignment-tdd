@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { hot } from 'react-hot-loader';
-import App from './App.js';
+// import { hot } from 'react-hot-loader';
+import App from './components/App';
 
 // if (module.hot) {
 //   module.hot.accept('./App.js', () => {
@@ -10,7 +10,7 @@ import App from './App.js';
 //   });
 // }
 
-render(App, document.getElementById('app'));
+render(<App />, document.getElementById('app'));
 module.hot.accept();
 // console.log(module.hot.accept);
 

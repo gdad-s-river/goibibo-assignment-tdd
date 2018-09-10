@@ -6,8 +6,9 @@ import PropTypes from 'prop-types';
 // TODO:
 // only allow numerals
 // validation check in javascript as well
+// check if the number already exists, if it does, tell the user
 
-const ContactInput = ({ onSubmit }) => (
+const ContactInput = ({ handleSubmit }) => (
   <div>
     <form
       onSubmit={e => {
@@ -17,7 +18,7 @@ const ContactInput = ({ onSubmit }) => (
           name: nameInput,
         } = e.target.elements;
 
-        onSubmit({
+        handleSubmit({
           name: nameInput.value,
           contactNumber: contactInput.value,
         });
@@ -47,7 +48,7 @@ const ContactInput = ({ onSubmit }) => (
 );
 
 ContactInput.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default ContactInput;

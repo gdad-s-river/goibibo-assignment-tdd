@@ -1,8 +1,8 @@
 import React from 'react';
-import { render, cleanup } from 'react-testing-library';
+import { render } from 'react-testing-library';
 import ContactInput from '..';
 
-afterEach(cleanup);
+// afterEach(cleanup);
 
 test('check for invalid number onChange of getByLabelText(/Contact Number/i) input', () => {
   //
@@ -11,7 +11,7 @@ test('check for invalid number onChange of getByLabelText(/Contact Number/i) inp
 test('calls onSubmit with contact number', () => {
   const handleSubmit = jest.fn();
   const { getByLabelText, getByText } = render(
-    <ContactInput onSubmit={handleSubmit} />,
+    <ContactInput handleSubmit={handleSubmit} />,
   );
 
   getByLabelText(/Contact Number/i).value = '8219133519';
@@ -24,9 +24,4 @@ test('calls onSubmit with contact number', () => {
     name: 'Arihant',
     contactNumber: '8219133519',
   });
-});
-
-// see if this test needs to be here or in other component's test file
-test('when a row of contact number is edited, label of #add-edit-contact should be "Edit"', () => {
-  //
 });
