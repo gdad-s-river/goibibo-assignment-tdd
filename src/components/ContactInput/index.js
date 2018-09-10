@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 // label would be either 'Add', or 'Edit'
 
@@ -23,11 +24,11 @@ const ContactInput = ({ onSubmit }) => (
       }}
     >
       <label htmlFor="name">
-        Name
+        <span>Name</span>
         <input type="text" name="name" id="name" />
       </label>
       <label htmlFor="contact-number">
-        Contact Number
+        <span>Contact Number</span>
         <input
           type="tel"
           id="contact-number"
@@ -44,5 +45,9 @@ const ContactInput = ({ onSubmit }) => (
     </form>
   </div>
 );
+
+ContactInput.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default ContactInput;
