@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ContactInput, ContactRow, ErrorBoundary } from '..';
+import { immutableSort, sortByName } from '../../utils';
 
 // TODO:
 // add an error boundary
@@ -14,7 +15,10 @@ class App extends Component {
     // this.state.contacts.push({ name, contactNumber });
     this.setState(prevState => {
       return {
-        contacts: [...prevState.contacts, { name, contactNumber }],
+        contacts: immutableSort(
+          [...prevState.contacts, { name, contactNumber }],
+          sortByName,
+        ),
       };
     });
   };
