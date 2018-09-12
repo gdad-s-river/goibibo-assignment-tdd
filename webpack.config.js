@@ -1,6 +1,8 @@
+const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpackMerge = require('webpack-merge');
+
 const modeConfig = env => require(`./build-utils/webpack.${env}`);
 const presetConfig = require(`./build-utils/loadPresets`);
 
@@ -11,14 +13,14 @@ module.exports = ({ mode, presets } = { mode: 'production', presets: [] }) => {
       mode,
       entry: './src/index.js',
       output: {
-        path: __dirname + '/dist',
+        path: path.join(__dirname, 'dist'),
         publicPath: '/',
         filename: 'bundle.js',
       },
       plugins: [
         new HtmlWebpackPlugin({
           title: 'Goibibo Interview Assignment',
-          template: __dirname + '/src/index.html',
+          template: path.join(__dirname, 'src/index.html'),
           filename: 'index.html',
         }),
         new webpack.ProgressPlugin(),

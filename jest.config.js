@@ -58,9 +58,7 @@ module.exports = {
   // globals: {},
 
   // An array of directory names to be searched recursively up from the requiring module's location
-  // moduleDirectories: [
-  //   "node_modules"
-  // ],
+  moduleDirectories: ['node_modules', '<rootDir>/src/testUtils'],
 
   // An array of file extensions your modules use
   // moduleFileExtensions: [
@@ -71,10 +69,11 @@ module.exports = {
   // ],
 
   // A map from regular expressions to module names that allow to stub out resources with a single module
-  // moduleNameMapper: {
-  //   '\\module\\.css$': 'identity-object-proxy',
-  //   '\\.css$': require.resolve('./test/style-mock'),
-  // },
+  moduleNameMapper: {
+    // '\\module\\.css$': 'identity-object-proxy',
+    // '\\.css$': require.resolve('./test/style-mock'),
+    // '^testUtils(.*)$': require.resolve('./src/testUtils/index.js'),
+  },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
