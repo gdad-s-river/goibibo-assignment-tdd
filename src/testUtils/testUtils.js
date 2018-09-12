@@ -12,8 +12,14 @@ const generateFakeName = () => {
   return faker.name.findName();
 };
 
-const generateFakeContactNumber = () => {
-  return faker.phone.phoneNumber('0##########');
-};
+const generateFakeContactNumber = () => faker.phone.phoneNumber('0#########');
 
-export { addContact, generateFakeContactNumber, generateFakeName };
+const generateFakeContactNumberWithPattern = pattern =>
+  faker.phone.phoneNumber(pattern);
+
+export {
+  addContact,
+  generateFakeContactNumber,
+  generateFakeName,
+  generateFakeContactNumberWithPattern,
+};

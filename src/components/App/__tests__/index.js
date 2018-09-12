@@ -7,7 +7,7 @@ import {
   generateFakeContactNumber,
   generateFakeName,
 } from 'testUtils';
-import App from '../';
+import App from '../App';
 import { shuffleArray, immutableSort, sortByName } from '../../../utils';
 
 // generally testing principle:arrange, act, assert
