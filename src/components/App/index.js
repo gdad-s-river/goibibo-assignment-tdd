@@ -35,13 +35,13 @@ class App extends Component {
             this.handleContactSubmit({ name, contactNumber });
           }}
         />
-        <ul className="contacts">
+        <ol className="contacts">
           {this.state.contacts.map(({ name, contactNumber }) => (
             <li key={contactNumber}>
               <ContactRow name={name} contactNumber={contactNumber} />
             </li>
           ))}
-        </ul>
+        </ol>
       </ErrorBoundary>
     );
   }

@@ -1,30 +1,19 @@
 import React from 'react';
 import { render, waitForElement } from 'react-testing-library';
-import * as faker from 'faker';
+
 import isEqual from 'lodash/isEqual';
+import {
+  addContact,
+  generateFakeContactNumber,
+  generateFakeName,
+} from 'testUtils';
 import App from '../';
 import { shuffleArray, immutableSort, sortByName } from '../../../utils';
-
-const generateFakeName = () => {
-  return faker.name.findName();
-};
-
-const generateFakeContactNumber = () => {
-  return faker.phone.phoneNumber('0##########');
-};
 
 // generally testing principle:arrange, act, assert
 // TODO: instead of hard coded contact name and number, use a generator
 
 // see if this test needs to be here or in other component's test file
-
-function addContact({ name, contactNumber }, { getByLabelText, getByText }) {
-  getByLabelText(/Name/i).value = name;
-  getByLabelText(/Contact Number/i).value = contactNumber;
-
-  // covers accessible actions of other kinds of submit, like through keyboard enter, since it is a form submit
-  getByText(/Save Contact/i).click();
-}
 
 test(`when Save Contact Button is pushed, it contact row should be added`, async () => {
   const { getByLabelText, getByText, getByTestId } = render(<App />);
