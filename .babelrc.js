@@ -10,5 +10,8 @@ module.exports = {
     ],
     '@babel/preset-react',
   ],
-  plugins: ['transform-class-properties'],
+  plugins: [
+    'transform-class-properties',
+    ['import', { libraryName: 'antd', libraryDirectory: 'es', style: 'css' }],
+  ],
 };

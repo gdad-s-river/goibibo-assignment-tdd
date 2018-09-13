@@ -25,8 +25,8 @@ function immutableSort(arr, compareFunction) {
 }
 
 const sortByName = (a, b) => {
-  const nameA = a.name.toUpperCase(); // case insensitive compare
-  const nameB = b.name.toUpperCase();
+  const nameA = a.contactName.toUpperCase(); // case insensitive compare
+  const nameB = b.contactName.toUpperCase();
 
   if (nameA < nameB) {
     return -1;

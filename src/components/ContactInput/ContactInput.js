@@ -16,8 +16,8 @@ class ContactInput extends React.Component {
   };
 
   handleChange = e => {
-    console.log('yeah science!');
-    console.log(e.target.value);
+    // console.log('yeah science!');
+    // console.log(e.target.value);
     // check if the user hasn't entered anything other than a number, only then do the following
     // TODO: remove this: abhi fake thing just to test control vs uncontrolled
     if (!e.target.value.includes('a')) {

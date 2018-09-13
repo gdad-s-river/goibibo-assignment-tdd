@@ -1,7 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 // import { hot } from 'react-hot-loader';
-import { App } from './components/';
+// import { App } from './components/';
+import App from './components/Rethinking';
 
 // if (module.hot) {
 //   module.hot.accept('./App.js', () => {
