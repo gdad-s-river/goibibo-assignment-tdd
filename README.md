@@ -17,27 +17,29 @@ fireEvent.change(contactNumberElement, { bubble: true });
 
 wasn't firing the change event at all. Here are the links —
 
-1. The problem — https://github.com/facebook/react/issues/10135
-2. The solution — https://github.com/facebook/react/issues/10135#issuecomment-401496776
-3. Reference in `react-testing-library` — https://github.com/kentcdodds/react-testing-library/pull/153
-4. `react-testing-library` solved it with this commit — https://github.com/kentcdodds/dom-testing-library/pull/85
+- The problem — https://github.com/facebook/react/issues/10135
+- The solution — https://github.com/facebook/react/issues/10135#issuecomment-401496776
+- Reference in `react-testing-library` — https://github.com/kentcdodds/react-testing-library/pull/153
+- `react-testing-library` solved it with this commit — https://github.com/kentcdodds/dom-testing-library/pull/85
+
+3. This saved me from hitting my head in the wall in trying to figure out why jest was not picking up esm exported from some of the node modules (antd, in my cast) — https://github.com/facebook/jest/issues/6229#issuecomment-403539460
 
 ## Thinking / Architecting Things
 
 App(state: {
-	contacts: type List(name, number)
+contacts: type List(name, number)
 })
-	ContactAddForm
-		UsernameInput (required)
-		ContactNumberInput (required)
-		SubmitButton
-	— ContactsList
-			ContactRow
-				ContactName
-				ContactNumber
-				Edit Button
-				Delete Button
-	— ContactEditInput
-			ContactNameEditInput (shouldn't be empty)
-			ContactNumberEditInput (shouldn't be empty)
-			SaveButton
+ContactAddForm
+UsernameInput (required)
+ContactNumberInput (required)
+SubmitButton
+— ContactsList
+ContactRow
+ContactName
+ContactNumber
+Edit Button
+Delete Button
+— ContactEditInput
+ContactNameEditInput (shouldn't be empty)
+ContactNumberEditInput (shouldn't be empty)
+SaveButton

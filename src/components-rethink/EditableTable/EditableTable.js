@@ -1,60 +1,16 @@
 import React, { Fragment } from 'react';
-import { Table, Input, Popconfirm, Form } from 'antd';
+import { Table, Popconfirm } from 'antd';
 import PropTypes from 'prop-types';
 
-import './Contacts.css';
+import { EditableFormRow, EditableCell } from '../index';
 
-const FormItem = Form.Item;
 const EditableContext = React.createContext();
+
+export { EditableContext };
 
 const OperationLinkStyles = {
   padding: '10px',
 };
-
-const EditableRow = ({ form, ...props }) => (
-  <EditableContext.Provider value={form}>
-    <tr {...props} />
-  </EditableContext.Provider>
-);
-
-const EditableFormRow = Form.create()(EditableRow);
-
-class EditableCell extends React.Component {
-  getInput = () => {
-    return <Input />;
-  };
-
-  render() {
-    const { editing, dataIndex, title, record, ...restProps } = this.props;
-
-    return (
-      <EditableContext.Consumer>
-        {form => {
-          const { getFieldDecorator } = form;
-          return (
-            <td {...restProps}>
-              {editing ? (
-                <FormItem style={{ margin: 0 }}>
-                  {getFieldDecorator(dataIndex, {
-                    rules: [
-                      {
-                        required: true,
-                        message: `Please Input ${title}!`,
-                      },
-                    ],
-                    initialValue: record[dataIndex],
-                  })(this.getInput())}
-                </FormItem>
-              ) : (
-                restProps.children
-              )}
-            </td>
-          );
-        }}
-      </EditableContext.Consumer>
-    );
-  }
-}
 
 class EditableTable extends React.Component {
   static propTypes = {
@@ -94,7 +50,6 @@ class EditableTable extends React.Component {
                   {form => (
                     // eslint-disable-next-line
                     <a
-                      // eslint-disable-next-line
                       href="javascript:;"
                       onClick={() => this.save(form, record.key)}
                       style={{ marginRight: 8 }}

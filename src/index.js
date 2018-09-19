@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 // import { hot } from 'react-hot-loader';
 // import { App } from './components/';
-import App from './components/Rethinking';
+import { App } from './components-rethink/';
 
 // if (module.hot) {
 //   module.hot.accept('./App.js', () => {

@@ -1,51 +1,16 @@
 import React, { Component } from 'react';
-import { Input, Icon, Form, Button } from 'antd';
 import PropTypes from 'prop-types';
-import { v4 } from 'uuid';
-import { immutableSort, sortByName } from '../utils';
+import { Form, Button } from 'antd';
 
-import EditableTable from './Contacts';
+import { ContactNameInput, ContactNumberInput } from '../index';
 
-import '../css/global.css';
+import '../../css/global.css';
 import 'antd/dist/antd.css';
 
 const FormItem = Form.Item;
 
 function hasErrors(fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
-}
-
-// eslint-disable-next-line
-const Label = ({ text, forId }) => <label htmlFor={forId}>{text}</label>;
-Label.propTypes = {
-  text: PropTypes.string.isRequired,
-  forId: PropTypes.string.isRequired,
-};
-
-class ContactNameInput extends Component {
-  render() {
-    return (
-      <Input
-        {...this.props}
-        prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-        placeholder="Name"
-        label="contact-name"
-      />
-    );
-  }
-}
-
-class ContactNumberInput extends Component {
-  render() {
-    return (
-      <Input
-        {...this.props}
-        prefix={<Icon type="phone" style={{ color: 'rgba(0,0,0,.25)' }} />}
-        type="tel"
-        placeholder="Number"
-      />
-    );
-  }
 }
 
 class ContactForm extends Component {
@@ -91,6 +56,19 @@ class ContactForm extends Component {
     // console.log(this.props.onSubmit);
   };
 
+  handleContactInputChange = e => {
+    const contactNoRegex = /^\d{10}$/;
+
+    if (!contactNoRegex.test(e.target.value)) {
+      console.log(this.props.form);
+      this.props.form.setFieldsValue({
+        contactNumber: {
+          value: 'yeah science',
+        },
+      });
+    }
+  };
+
   render() {
     const {
       getFieldDecorator,
@@ -129,8 +107,13 @@ class ContactForm extends Component {
         >
           {getFieldDecorator('contactNumber', {
             rules: [
-              { required: true, message: 'Please input contact number!' },
+              {
+                required: true,
+                message: 'Please input contact number!',
+                // validator: this.checkContactNumber
+              },
             ],
+            onChange: this.handleContactInputChange,
           })(<ContactNumberInput />)}
         </FormItem>
         <FormItem>
@@ -139,6 +122,7 @@ class ContactForm extends Component {
             htmlType="submit"
             disabled={hasErrors(getFieldsError())}
             className="contact-submit"
+            data-testid="add-contact-btn"
           >
             Save Contact
           </Button>
@@ -151,73 +135,16 @@ class ContactForm extends Component {
 // const ContactAddForm = Form.create()(ContactForm);
 
 const ContactAddForm = ({ onSubmit }) => {
-  const A = props => <ContactForm onSubmit={onSubmit} {...props} />;
-  const B = Form.create()(A);
+  const ContactFormWithSubmitProp = props => (
+    <ContactForm {...props} onSubmit={onSubmit} />
+  );
+  const DecoratedContactForm = Form.create()(ContactFormWithSubmitProp);
 
-  return <B />;
+  return <DecoratedContactForm />;
 };
 
 ContactAddForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
-// const dumData = [];
-// for (let i = 0; i < 100; i++) {
-//   dumData.push({
-//     key: i.toString(),
-//     contactName: `Arihant ${i}`,
-//     contactPhone: `821913${i}`,
-//   });
-// }
-
-class App extends Component {
-  state = {
-    contacts: [],
-  };
-
-  addContact({ contactName, contactNumber }) {
-    // this.state.contacts.push({ name, contactNumber });
-    this.setState(prevState => {
-      return {
-        contacts: immutableSort(
-          [
-            ...prevState.contacts,
-            {
-              key: contactNumber,
-              contactName,
-              contactNumber,
-            },
-          ],
-          sortByName,
-        ),
-      };
-    });
-  }
-
-  handleSubmit = ({ contactName, contactNumber }) => {
-    this.addContact({ contactName, contactNumber, key: v4() });
-  };
-
-  onSave = newData => {
-    this.setState({ contacts: immutableSort(newData, sortByName) });
-  };
-
-  onDelete = afterDeleteData => {
-    this.setState({ contacts: afterDeleteData });
-  };
-
-  render() {
-    return (
-      <div className="app-container">
-        <ContactAddForm onSubmit={this.handleSubmit} />
-        <EditableTable
-          data={this.state.contacts}
-          onSave={this.onSave}
-          onDelete={this.onDelete}
-        />
-      </div>
-    );
-  }
-}
-
-export default App;
+export default ContactAddForm;

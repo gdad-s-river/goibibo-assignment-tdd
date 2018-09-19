@@ -10,7 +10,9 @@
     "prod": "npm run webpack -- --env.mode production",
     "prod:analyse": "npm run prod -- --env.presets analyze",
     "prod:compress": "npm run prod -- --env.presets compress",
-    "test": "jest --coverage",
+		"test": "jest --coverage",
+		"test:update": "jest --coverage -u",
+		"test:watchsilent": "jest --watch --silent",
     "test:watch": "jest --watch"
   },
   "keywords": [
@@ -60,7 +62,8 @@
     "rules": {
       "import/prefer-default-export": "off",
       "import/no-unassigned-import": "off",
-      "import/no-useless-path-segments": "off"
+      "import/no-useless-path-segments": "off",
+      "no-script-url": "off"
     },
     "settings": {
       "import/resolver": {
