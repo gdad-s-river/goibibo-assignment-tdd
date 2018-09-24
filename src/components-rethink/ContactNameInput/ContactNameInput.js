@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Input, Icon } from 'antd';
 
+// TODO: basic length sanity for input field (max name 100 characters)
+
 class ContactNameInput extends Component {
   render() {
     return (

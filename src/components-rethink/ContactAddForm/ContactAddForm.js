@@ -24,6 +24,28 @@ class ContactForm extends Component {
     this.props.form.validateFields();
   }
 
+  // NOTE : not using this, since validation is handled
+  // in onChange of ContactNumberInput
+  //eslint-disable-next-line
+  numberValidator = (rule, value, callback) => {
+    // const { form } = this.props;
+    // const contactNoRegex = /^\d{10}$/;
+    // const errors = [];
+    // if (value && !contactNoRegex.test(value)) {
+    //   // form.validateFields(['contactNumber'], )
+    //   // callback('You must enter a 10 digit number');
+    //   // form.validateFields(['contactNumber'], { force: true });
+    //   // this.props.form.setFields({
+    //   //   contactNumber: {
+    //   //     errors: [new Error('Please enter a 10 digit number')],
+    //   //   },
+    //   // });
+    //   errors.push(new Error('Please enter a valid 10 digit number'));
+    //   callback('yada yada');
+    // }
+    // callback();
+  };
+
   resetForm() {
     const { validateFields, resetFields } = this.props.form;
     resetFields();
@@ -56,17 +78,16 @@ class ContactForm extends Component {
     // console.log(this.props.onSubmit);
   };
 
-  handleContactInputChange = e => {
-    const contactNoRegex = /^\d{10}$/;
-
-    if (!contactNoRegex.test(e.target.value)) {
-      console.log(this.props.form);
-      this.props.form.setFieldsValue({
-        contactNumber: {
-          value: 'yeah science',
-        },
-      });
-    }
+  handleContactInputChange = () => {
+    // const contactNoRegex = /^\d{10}$/;
+    // if (!contactNoRegex.test(e.target.value)) {
+    //   // console.log(this.props.form);
+    //   this.props.form.setFieldsValue({
+    //     contactNumber: {
+    //       value: 'yeah science',
+    //     },
+    //   });
+    // }
   };
 
   render() {
@@ -110,11 +131,11 @@ class ContactForm extends Component {
               {
                 required: true,
                 message: 'Please input contact number!',
-                // validator: this.checkContactNumber
+                // validator: this.numberValidator,
               },
             ],
-            onChange: this.handleContactInputChange,
-          })(<ContactNumberInput />)}
+            // onChange: this.handleContactInputChange,
+          })(<ContactNumberInput form={this.props.form} />)}
         </FormItem>
         <FormItem>
           <Button
