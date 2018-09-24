@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input, Form } from 'antd';
 
-// import { ContactNameInput, ContactNumberInput } from '../index';
+import { ContactNameInput, ContactNumberInput } from '../index';
 
 import { EditableContext } from '../EditableTable/EditableTable';
 
@@ -11,17 +11,17 @@ import { EditableContext } from '../EditableTable/EditableTable';
 
 const FormItem = Form.Item;
 class EditableCell extends React.Component {
-  getInput = () => {
+  getInput = form => {
     // return <Input />;
-    // const { dataIndex } = this.props;
+    const { dataIndex } = this.props;
 
-    // if (dataIndex === 'contactName') {
-    //   return <ContactNameInput />;
-    // }
+    if (dataIndex === 'contactName') {
+      return <ContactNameInput />;
+    }
 
-    // if (dataIndex === 'contactNumber') {
-    //   return <ContactNumberInput />;
-    // }
+    if (dataIndex === 'contactNumber') {
+      return <ContactNumberInput form={form} />;
+    }
 
     return <Input />;
   };
@@ -50,7 +50,7 @@ class EditableCell extends React.Component {
                     },
                   ],
                   initialValue: record && record[dataIndex],
-                })(this.getInput())}
+                })(this.getInput(form))}
               </FormItem>
             );
           }
